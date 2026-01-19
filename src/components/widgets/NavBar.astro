@@ -4,49 +4,59 @@ import { Icon } from "astro-icon/components";
 
 <nav
     id="navbar"
-    class="fixed left-1/2 -translate-x-1/2 top-[65px] w-[95%] max-w-6xl z-50 transition-all duration-500 ease-in-out bg-white/40 backdrop-blur-md rounded-[20px] px-6 py-4 flex items-center justify-between"
+    class="fixed left-1/2 top-[65px]
+         -translate-x-1/2
+         w-[95%] max-w-6xl z-50
+         bg-white/40 backdrop-blur-md
+         rounded-[20px] px-6 py-4
+         flex items-center justify-between
+         will-change-transform"
 >
     <div class="flex items-center gap-3">
-        <button
-            class="flex items-center gap-2 px-5 py-2 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition"
+        <a
+            href="https://t.me/zedacademy2026"
+            target="_blank"
+            class="flex items-center gap-2 px-5 py-2 rounded-lg font-semibold text-white bg-[#007fff] hover:bg-[#006fde] transition"
         >
             Telegram
             <Icon name="simple-icons:telegram" class="w-4 h-4" />
-        </button>
-        <button
-            class="px-6 py-2 rounded-lg font-semibold text-gray-800 bg-blue-100 hover:bg-blue-200 transition"
+        </a>
+        <a
+            href="#"
+            target="_blank"
+            class="px-6 py-2 rounded-lg font-semibold text-gray-900 bg-[#bbd0fb] hover:bg-[#a8c0f4] transition"
         >
             Log In
-        </button>
+        </a>
     </div>
 
     <div class="hidden md:flex items-center gap-8">
         <a
             href="#"
-            class="font-semibold text-gray-900 hover:text-orange-500 transition"
+            class="font-semibold text-gray-900 hover:text-[var(--color-yellow)] transition"
             >Home</a
         >
         <a
             href="#"
-            class="font-medium text-gray-600 hover:text-gray-900 transition"
+            class="font-medium text-gray-500 hover:text-[var(--color-yellow)] transition"
             >Courses</a
         >
         <a
             href="#"
-            class="font-medium text-gray-600 hover:text-gray-900 transition"
+            class="font-medium text-gray-500 hover:text-[var(--color-yellow)] transition"
             >Reviews</a
         >
         <a
             href="#"
-            class="font-medium text-gray-600 hover:text-gray-900 transition"
+            class="font-medium text-gray-500 hover:text-[var(--color-yellow)] transition"
             >Contact</a
         >
     </div>
 
     <div class="flex items-center gap-2">
-        <span class="font-bold text-gray-800 text-lg"
-            ><span class="text-[#FFB800]">Zed </span> Academy</span
-        >
+        <span class="font-bold text-gray-800 text-lg">
+            <span class="text-[var(--color-yellow)]">Zed </span> Academy
+        </span>
         <div class="bg-black rounded-full p-2">
             <img
                 src="/src/assets/logo-zed.png"
@@ -60,15 +70,18 @@ import { Icon } from "astro-icon/components";
 <script>
     const navbar = document.getElementById("navbar");
 
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 10) {
-            // State when scrolling: stick to top 0
-            navbar.classList.remove("top-[65px]", "w-[95%]");
-            navbar.classList.add("top-[10px]", "w-full");
-        } else {
-            // Initial state: floating at 50px
-            navbar.classList.add("top-[65px]", "w-[95%]");
-            navbar.classList.remove("top-[10px]", "w-full");
-        }
+    const START_TOP = 65;
+    const END_TOP = 10;
+    const MAX_OFFSET = START_TOP - END_TOP;
+
+    function updateNavbar() {
+        const offset = Math.min(window.scrollY, MAX_OFFSET);
+        navbar.style.transform = `translateY(-${offset}px)`;
+    }
+
+    window.addEventListener("scroll", updateNavbar);
+
+    window.addEventListener("load", () => {
+        requestAnimationFrame(updateNavbar);
     });
 </script>

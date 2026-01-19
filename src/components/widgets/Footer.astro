@@ -23,12 +23,36 @@ const menuColumns = [
 ];
 
 const socialLinks = [
-    { name: "simple-icons:telegram", url: "#", label: "Telegram" },
-    { name: "simple-icons:whatsapp", url: "#", label: "Whatsapp" },
-    { name: "simple-icons:linkedin", url: "#", label: "Linkedin" },
-    { name: "simple-icons:facebook", url: "#", label: "Facebook" },
-    { name: "simple-icons:instagram", url: "#", label: "Instagram" },
-    { name: "simple-icons:tiktok", url: "#", label: "TikTok" },
+    {
+        name: "simple-icons:telegram",
+        url: "https://t.me/zedacademy2026",
+        label: "Telegram",
+    },
+    {
+        name: "simple-icons:whatsapp",
+        url: "https://wa.me/213540314867",
+        label: "Whatsapp",
+    },
+    {
+        name: "simple-icons:linkedin",
+        url: "https://www.linkedin.com/company/zedacademy16/",
+        label: "Linkedin",
+    },
+    {
+        name: "simple-icons:facebook",
+        url: "https://www.facebook.com/zed4edu",
+        label: "Facebook",
+    },
+    {
+        name: "simple-icons:instagram",
+        url: "https://www.instagram.com/zed.educ",
+        label: "Instagram",
+    },
+    {
+        name: "simple-icons:tiktok",
+        url: "https://www.tiktok.com/@zed.edu",
+        label: "TikTok",
+    },
 ];
 ---
 
@@ -41,7 +65,7 @@ const socialLinks = [
                         {col.links.map((link) => (
                             <a
                                 href="#"
-                                class="text-sm uppercase font-medium hover:text-[#FFB800] transition-colors"
+                                class="text-sm uppercase font-medium hover:text-[var(--color-yellow)] transition-colors"
                             >
                                 {link}
                             </a>
@@ -70,7 +94,8 @@ const socialLinks = [
                         <a
                             href={social.url}
                             aria-label={social.label}
-                            class="bg-white text-black p-2 rounded-full hover:bg-[#FFB800] hover:scale-110 transition-all duration-300 flex items-center justify-center"
+                            target="_blank"
+                            class="bg-white text-black p-2 rounded-full hover:bg-[var(--color-yellow)] hover:scale-110 transition-all duration-300 flex items-center justify-center"
                         >
                             <Icon name={social.name} class="w-5 h-5" />
                         </a>

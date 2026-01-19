@@ -1,0 +1,41 @@
+---
+import "../assets/styles/tailwind.css";
+import Footer from "../components/widgets/Footer.astro";
+
+export interface MetaData {
+	title: string;
+	description?: string;
+	language?: string;
+	textDirection?: string;
+}
+
+export interface Props {
+	metadata: MetaData;
+}
+
+const { metadata } = Astro.props;
+const { title, description, language, textDirection } = metadata;
+---
+
+<!doctype html>
+<html lang={language} dir={textDirection}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/src/assets/icon-zed.png" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
+	</head>
+
+	<body>
+		<main>
+			<slot />
+		</main>
+
+		<slot name="footer">
+			<Footer />
+		</slot>
+	</body>
+</html>

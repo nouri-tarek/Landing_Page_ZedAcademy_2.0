@@ -1,0 +1,86 @@
+---
+import { Icon } from "astro-icon/components";
+
+const menuColumns = [
+    {
+        title: "Column 1",
+        links: [
+            "Menu Here",
+            "Menu Here",
+            "Menu Here",
+            "Menu Here",
+            "Menu Here",
+        ],
+    },
+    {
+        title: "Column 2",
+        links: ["Menu Here", "Menu Here", "Menu Here", "Menu Here"],
+    },
+    {
+        title: "Column 3",
+        links: ["Menu Here", "Menu Here", "Menu Here"],
+    },
+];
+
+const socialLinks = [
+    { name: "simple-icons:telegram", url: "#", label: "Telegram" },
+    { name: "simple-icons:whatsapp", url: "#", label: "Whatsapp" },
+    { name: "simple-icons:linkedin", url: "#", label: "Linkedin" },
+    { name: "simple-icons:facebook", url: "#", label: "Facebook" },
+    { name: "simple-icons:instagram", url: "#", label: "Instagram" },
+    { name: "simple-icons:tiktok", url: "#", label: "TikTok" },
+];
+---
+
+<footer class="bg-[#121212] text-white pt-12 pb-6 px-8 md:px-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            {
+                menuColumns.map((col) => (
+                    <div class="flex flex-col gap-3">
+                        {col.links.map((link) => (
+                            <a
+                                href="#"
+                                class="text-sm uppercase font-medium hover:text-[#FFB800] transition-colors"
+                            >
+                                {link}
+                            </a>
+                        ))}
+                    </div>
+                ))
+            }
+
+            <div class="flex justify-center md:justify-end tracking-tighter">
+                <img
+                    src="/src/assets/logo-zed.png"
+                    alt="logo zed"
+                    class="h-auto w-32 md:w-40 object-contain"
+                />
+            </div>
+        </div>
+
+        <hr class="border-gray-700 mb-6" />
+
+        <div
+            class="flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+            <div class="flex gap-4 items-center justify-center">
+                {
+                    socialLinks.map((social) => (
+                        <a
+                            href={social.url}
+                            aria-label={social.label}
+                            class="bg-white text-black p-2 rounded-full hover:bg-[#FFB800] hover:scale-110 transition-all duration-300 flex items-center justify-center"
+                        >
+                            <Icon name={social.name} class="w-5 h-5" />
+                        </a>
+                    ))
+                }
+            </div>
+
+            <p class="text-gray-400 text-sm text-center md:text-left">
+                Copyright © ZedEdu.dz 2026. All Rights Reserved
+            </p>
+        </div>
+    </div>
+</footer>

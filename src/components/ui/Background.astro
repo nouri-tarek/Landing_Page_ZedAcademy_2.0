@@ -1,0 +1,154 @@
+---
+interface Props {
+    class?: string;
+    [x: string]: any;
+
+    blurTopLeft?: string;
+    blurTopCenter?: string;
+    blurTopRight?: string;
+    blurBottomLeft?: string;
+    blurBottomCenter?: string;
+    blurBottomRight?: string;
+
+    widthTopLeft?: string;
+    heightTopLeft?: string;
+    widthTopCenter?: string;
+    heightTopCenter?: string;
+    widthTopRight?: string;
+    heightTopRight?: string;
+    widthBottomLeft?: string;
+    heightBottomLeft?: string;
+    widthBottomCenter?: string;
+    heightBottomCenter?: string;
+    widthBottomRight?: string;
+    heightBottomRight?: string;
+}
+
+const {
+    class: className,
+
+    blurTopLeft = "250px",
+    blurTopCenter = "250px",
+    blurTopRight = "300px",
+    blurBottomLeft = "250px",
+    blurBottomCenter = "150px",
+    blurBottomRight = "250px",
+
+    widthTopLeft = "60%",
+    heightTopLeft = "60%",
+
+    widthTopCenter = "45%",
+    heightTopCenter = "60%",
+
+    widthTopRight = "60%",
+    heightTopRight = "60%",
+
+    widthBottomLeft = "60%",
+    heightBottomLeft = "60%",
+
+    widthBottomCenter = "35%",
+    heightBottomCenter = "60%",
+
+    widthBottomRight = "60%",
+    heightBottomRight = "60%",
+
+    ...rest
+} = Astro.props;
+---
+
+<div class:list={["gradient-container", className]} {...rest}>
+    <div
+        class="blob sky-top"
+        style={`--blur: ${blurTopRight}; --w: ${widthTopRight}; --h: ${heightTopRight};`}
+    >
+    </div>
+    <div
+        class="blob lavender-top"
+        style={`--blur: ${blurTopCenter}; --w: ${widthTopCenter}; --h: ${heightTopCenter};`}
+    >
+    </div>
+    <div
+        class="blob purple-top"
+        style={`--blur: ${blurTopLeft}; --w: ${widthTopLeft}; --h: ${heightTopLeft};`}
+    >
+    </div>
+
+    <div
+        class="blob turquoise-bottom"
+        style={`--blur: ${blurBottomLeft}; --w: ${widthBottomLeft}; --h: ${heightBottomLeft};`}
+    >
+    </div>
+    <div
+        class="blob cyan-bottom"
+        style={`--blur: ${blurBottomRight}; --w: ${widthBottomRight}; --h: ${heightBottomRight};`}
+    >
+    </div>
+    <div
+        class="blob blue-bottom"
+        style={`--blur: ${blurBottomCenter}; --w: ${widthBottomCenter}; --h: ${heightBottomCenter};`}
+    >
+    </div>
+
+    <div class="content">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .gradient-container {
+        position: relative;
+        overflow: hidden;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .blob {
+        position: absolute;
+        width: var(--w);
+        height: var(--h);
+        filter: blur(var(--blur));
+        opacity: 1;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .purple-top {
+        top: -20%;
+        left: -47%;
+        background: #ff00ff;
+    }
+    .lavender-top {
+        top: -20%;
+        left: 25%;
+        background: #afdfff;
+    }
+    .sky-top {
+        top: -15%;
+        right: -35%;
+        background: #8400ff;
+    }
+
+    .turquoise-bottom {
+        bottom: -15%;
+        left: -20%;
+        background: #0044ff;
+    }
+    .blue-bottom {
+        bottom: -20%;
+        left: 30%;
+        background: #00d9ff;
+    }
+    .cyan-bottom {
+        bottom: -15%;
+        right: -20%;
+        background: #0044ff;
+    }
+
+    .content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+</style>
